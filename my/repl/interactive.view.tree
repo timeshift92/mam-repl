@@ -1,0 +1,43 @@
+$my_repl_interactive $mol_book
+	attr * mol_theme \$mol_theme_dark
+	head null
+	Placeholder $mol_book_placeholder
+		title <= title
+		sub /
+			<= Source $mol_textarea
+				value?val <=> source?val \
+				hint <= source_hint @ \view.tree source
+			<= Info $mol_deck
+				items /
+					<= treeSource *
+						title <= treeLabel \.tree
+						Content <= TreeSource $mol_textarea
+							focused <= focus true 
+							value?val <=> tree_source?val \
+							hint <= tree_source_hint @ \view.tree source
+					<= tsSource *
+						title <= tsLabel @ \.ts
+						Content <= TsSource $mol_textarea
+							value?val <=> ts_source?val \
+							hint <= ts_source_hint @ \view.ts source
+					<= cssSource *
+						title <= cssLabel @ \.css
+						Content <= CssSource $mol_textarea
+							value?val <=> css_source?val \
+							hint <= css_source_hint @ \view.css source
+			<= Scroll $mol_scroll sub <= apps /
+				<= App_widgets $my_repl_interactive_widget
+					title <= app_widgets_title @ \$mol components
+					details <= url?val \
+				<= App_widgets2 $my_repl_interactive_widget
+					title <= app_widgets_title @ \$mol components
+					details <= url2?val \
+$my_repl_interactive_widget $mol_link
+	target \_blank
+	uri <= details \
+	preview \
+	sub /
+		
+		<= Demo $mol_demo_ext
+			style * background-image <= background \
+			uri <= details \

@@ -1,0 +1,13 @@
+$my_list $mol_view
+	data / 
+	labelAttr \
+	sub /
+		<= listTitle \
+		<= Items $mol_list
+			rows <= rows /
+	Item_row!id $mol_row
+		sub / 
+			<= label!id \
+			<= button!id $mol_button_minor
+				click <= action!id null
+				sub / <= buttonTitle \

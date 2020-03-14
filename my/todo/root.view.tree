@@ -1,0 +1,33 @@
+$my_root $mol_view
+	sub /
+		<= Name $my_todoInput
+			value?val <=> name?val \
+			submit?val <=> submit?val null
+		<= add $mol_button_major
+			click?val <= addTodoItem?val null
+			sub /\Add task
+			enabled <= isAddEnabled null
+		<= active_page_link $mol_link
+			arg *
+				page \active
+			sub /\Active page
+		<= finished_page_link $mol_link
+			arg *
+				page \finished
+			sub /\Finished page
+		<= ActiveTasksList $my_list
+			buttonTitle \Delete
+			data <= activeItems /
+			labelAttr \label
+			action!id <= deleteTodoItem!id null
+		<= FinishedTasksList $my_list
+			buttonTitle \Restore
+			data <= finishedItems /
+			labelAttr \label
+			action!id <= restoreItem!id null
+$my_todoInput $mol_string
+	hint \Добавить задачу
+	value?val <=> name?val \
+	event *
+		^
+		keydown?event <=> submit?event null

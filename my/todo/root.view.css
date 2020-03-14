@@ -1,0 +1,7 @@
+[my_root_add]{
+    display: block;
+}
+
+[my_root_finishedtaskslist], [my_root_activetaskslist]{
+    width: 100%;
+}

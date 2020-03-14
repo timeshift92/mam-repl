@@ -1,0 +1,41 @@
+[my_hello_menu] {
+	flex: 1 1 400px;
+}
+
+[my_hello_menu_links] {
+	padding: .5rem;
+}
+
+[my_hello_question_link] {
+	display: block;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+[my_hello_question_tags] {
+	flex: 1 0 auto;
+	color: var(--mol_theme_shade);
+	display: flex;
+	flex-wrap: wrap;
+}
+
+[my_hello_tag] {
+	margin-right: .5rem;
+}
+
+[my_hello_question_title] {
+	flex: 1000 1 auto;
+}
+
+[my_hello_placeholder] ,
+[my_hello_details] {
+	flex: 1000 1 600px;
+}
+
+[my_hello_details_descr] {
+	margin: 1rem;
+}
+
+[my_hello_answer] {
+	margin: 1rem;
+}

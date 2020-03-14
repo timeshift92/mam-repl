@@ -1,0 +1,28 @@
+[my_repl_interactive] {
+	height: 100%;
+	width: 100%;
+}
+[my_repl_interactive_placeholder] {
+	display: flex;
+	flex-direction: row;
+}
+[my_repl_interactive_app_widgets2_demo] {
+	visibility: hidden;
+	height: 0;
+	width: 0;
+	position: absolute;
+}
+[my_repl_interactive_info] {
+	width: 50%;
+}
+[my_repl_interactive_treesource] {
+	height: 100%;
+}
+
+[my_repl_interactive_tssource] {
+	height: 100%;
+}
+
+[my_repl_interactive_csssource] {
+	height: 100%;
+}
