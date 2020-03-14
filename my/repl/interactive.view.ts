@@ -1,54 +1,52 @@
 namespace $.$$ {
 
 	export class $my_repl_interactive extends $.$my_repl_interactive {
-		socket: any
-		host = 'http://46.173.215.130'
-
+		// host = 'http://46.173.215.130'
+		host = 'http://localhost:9080'
+		// ws = 'ws://46.173.215.130/ws'
+		ws = 'ws://localhost:9001/'
+		socket = new WebSocket(this.ws)
 
 		@$mol_mem
 		connection() {
-			this.socket = new WebSocket('ws://46.173.215.130/ws')
+
 			var self = this;
 			this.socket.onclose = function () {
-				setTimeout(() => this.socket = new WebSocket('ws://46.173.215.130/ws'), 5000)
+				setTimeout(() => self.socket = new WebSocket(self.ws), 5000)
 			}
 			this.socket.onmessage = (event: any) => {
 				this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
 				setTimeout(() => {
 					this.url(`${this.host}/my/repl/page/?${new Date().getTime()}`)
 				}, 250);
-
 			}
-			if (!this.sending_source) {
-				this.sending_source = { tree: '', ts: '', css: '' };
-			}
-			this.sending_source.tree = this.$.$mol_state_arg.dict['tree_source'];
-			this.sending_source.ts = this.$.$mol_state_arg.dict['ts_source'];
-			this.sending_source.css = this.$.$mol_state_arg.dict['css_source'];
 
+			this.sending_source.tree = this.$.$mol_state_arg.dict()['tree_source'];
+			this.sending_source.ts = this.$.$mol_state_arg.dict()['ts_source'];
+			this.sending_source.css = this.$.$mol_state_arg.dict()['css_source'];
 			setInterval(() => {
-				this.outbox(this.sending_source)
-				// if (
-				// 	(this.current_source.tree != this.sending_source.tree ||
-				// 		this.current_source.css != this.sending_source.css ||
-				// 		this.current_source.ts != this.sending_source.ts)
-				// 	&& new Date().getTime() - this.typing > 1500) {
-				// 	this.current_source = Object.assign({}, this.sending_source);
-				// 	if (this.socket.readyState === this.socket.OPEN)
-				// 		this.socket.send(JSON.stringify(this.sending_source));
-				// }
+				// this.outbox(this.sending_source)
+				if (
+					(this.current_source.tree != this.sending_source.tree ||
+						this.current_source.css != this.sending_source.css ||
+						this.current_source.ts != this.sending_source.ts)
+					&& new Date().getTime() - this.typing > 1500) {
+					this.current_source = Object.assign({}, this.sending_source);
+					if (this.socket.readyState === this.socket.OPEN)
+						this.socket.send(JSON.stringify(this.sending_source));
+				}
 			}, 1000)
 			return {
 				destructor: () => {
-					this.socket.close()
+					// this.socket.close()
 				}
 			}
 		}
-
 		render() {
 			this.connection();
-			return super.render()
+			return super.render();
 		}
+
 		@$mol_mem
 		compiled() {
 			return $mol_view_tree_compile($mol_tree.fromString(this.tree_source(), 'view.tree'))
@@ -61,7 +59,8 @@ namespace $.$$ {
 
 		@$mol_mem
 		outbox(next?: { tree: string, css: string, ts: string }, ) {
-			this.socket.send(JSON.stringify(next))
+			if (this.socket.readyState === this.socket.OPEN)
+				this.socket.send(JSON.stringify(next))
 			return next
 		}
 		typing = new Date().getTime();

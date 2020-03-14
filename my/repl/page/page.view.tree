@@ -2,5 +2,5 @@ $my_repl_page $mol_view
 	sub /
 		<= Name $mol_string
 			hint \Name
-			value?val <=> name?val \212222ф
+			value?val <=> name?val \
 		<= message \

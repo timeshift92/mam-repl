@@ -3,7 +3,7 @@ namespace $.$$ {
 		
 		message() {
 			let name = this.name()
-			return name && `Hello, ${name}!`
+			return name && `Hello2, ${name}!`
 		}
 		
 	}
