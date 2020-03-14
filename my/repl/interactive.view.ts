@@ -3,12 +3,14 @@ namespace $.$$ {
 	export class $my_repl_interactive extends $.$my_repl_interactive {
 		socket: any
 		host = 'http://46.173.215.130'
-		
-		reconnect() {
+
+
+		@$mol_mem
+		connection() {
 			this.socket = new WebSocket('ws://46.173.215.130/ws')
 			var self = this;
 			this.socket.onclose = function () {
-				setTimeout(self.reconnect, 5000)
+				setTimeout(() => this.socket = new WebSocket('ws://46.173.215.130/ws'), 5000)
 			}
 			this.socket.onmessage = (event: any) => {
 				this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
@@ -17,7 +19,9 @@ namespace $.$$ {
 				}, 250);
 
 			}
-
+			if (!this.sending_source) {
+				this.sending_source = { tree: '', ts: '', css: '' };
+			}
 			this.sending_source.tree = this.$.$mol_state_arg.dict['tree_source'];
 			this.sending_source.ts = this.$.$mol_state_arg.dict['ts_source'];
 			this.sending_source.css = this.$.$mol_state_arg.dict['css_source'];
@@ -34,13 +38,16 @@ namespace $.$$ {
 				// 		this.socket.send(JSON.stringify(this.sending_source));
 				// }
 			}, 1000)
+			return {
+				destructor: () => {
+					this.socket.close()
+				}
+			}
 		}
 
-		constructor() {
-			super();
-
-			this.reconnect();
-
+		render() {
+			this.connection();
+			return super.render()
 		}
 		@$mol_mem
 		compiled() {
