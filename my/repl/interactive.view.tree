@@ -4,9 +4,6 @@ $my_repl_interactive $mol_book
 	Placeholder $mol_book_placeholder
 		title <= title
 		sub /
-			<= Source $mol_textarea
-				value?val <=> source?val \
-				hint <= source_hint @ \view.tree source
 			<= Info $mol_deck
 				items /
 					<= treeSource *
@@ -30,14 +27,13 @@ $my_repl_interactive $mol_book
 					title <= app_widgets_title @ \$mol components
 					details <= url?val \
 				<= App_widgets2 $my_repl_interactive_widget
-					title <= app_widgets_title @ \$mol components
+					title <= app_widgets_title2 @ \$mol components
 					details <= url2?val \
 $my_repl_interactive_widget $mol_link
 	target \_blank
 	uri <= details \
 	preview \
 	sub /
-		
 		<= Demo $mol_demo_ext
 			style * background-image <= background \
 			uri <= details \
