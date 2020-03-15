@@ -9,6 +9,7 @@
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"alwaysStrict": true,
+		"checkJs": false,
 		"strict": false,
 		"allowUnusedLabels": true,
 		"removeComments" : true ,
