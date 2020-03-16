@@ -23,9 +23,10 @@ $my_repl_interactive $mol_book
 							value?val <=> css_source?val \
 							hint <= css_source_hint @ \view.css source
 			<= Scroll $mol_scroll sub <= apps /
-				<= App_widgets $my_repl_interactive_widget
+				<= App_widgets $mol_demo_ext 
 					title <= app_widgets_title @ \$mol components
-					details <= url?val \
+					attr *
+						data <= url?val \
 				<= App_widgets2 $my_repl_interactive_widget
 					title <= app_widgets_title2 @ \$mol components
 					details <= url2?val \
