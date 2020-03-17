@@ -15,7 +15,7 @@ namespace $.$$ {
 				setTimeout(() => self.socket = new WebSocket(self.ws), 5000)
 			}
 			this.socket.onmessage = (event: any) => {
-				this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
+				// this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
 				setTimeout(() => {
 					this.url(`${this.host}/my/repl/page/?${new Date().getTime()}`)
 				}, 250);
@@ -24,27 +24,70 @@ namespace $.$$ {
 			this.sending_source.tree = this.$.$mol_state_arg.dict()['tree_source'];
 			this.sending_source.ts = this.$.$mol_state_arg.dict()['ts_source'];
 			this.sending_source.css = this.$.$mol_state_arg.dict()['css_source'];
-			setInterval(() => {
-				// this.outbox(this.sending_source)
-				if (
-					(this.current_source.tree != this.sending_source.tree ||
-						this.current_source.css != this.sending_source.css ||
-						this.current_source.ts != this.sending_source.ts)
-					&& new Date().getTime() - this.typing > 1500) {
-					this.current_source = Object.assign({}, this.sending_source);
-					if (this.socket.readyState === this.socket.OPEN)
-						this.socket.send(JSON.stringify(this.sending_source));
-				}
-			}, 1000)
+			setTimeout(() => {
+				this.send_source();
+			}, 1000);
+
 			return {
 				destructor: () => {
 					// this.socket.close()
 				}
 			}
 		}
+
+		send_source() {
+			if (
+				(this.current_source.tree != this.sending_source.tree ||
+					this.current_source.css != this.sending_source.css ||
+					this.current_source.ts != this.sending_source.ts)
+				&& new Date().getTime() - this.typing > 1500) {
+				this.current_source = Object.assign({}, this.sending_source);
+				if (this.socket.readyState === this.socket.OPEN)
+					this.socket.send(JSON.stringify(this.sending_source));
+			}
+		}
 		render() {
 			this.connection();
 			return super.render();
+		}
+		ctrl_s_press(event: KeyboardEvent) {
+			console.log(event)
+			if (event.ctrlKey || event.metaKey) {
+				switch (String.fromCharCode(event.which).toLowerCase()) {
+					case 's':
+						event.preventDefault();
+						this.send_source();
+						break;
+				}
+			}
+
+		}
+		handle_click(event: any) {
+			this.send_source();
+		}
+		@$mol_mem
+		handle_checked(val?: any, force?: $mol_mem_force) {
+			if (val) {
+				this.auto_save()
+			} else {
+				this.stop_auto_save()
+			}
+
+
+			return (val !== void 0) ? val : true
+		}
+
+		auto_save_service: any
+		auto_save() {
+			this.auto_save_service = setInterval(() => {
+				this.send_source();
+			}, 1000)
+
+
+		}
+
+		stop_auto_save() {
+			clearInterval(this.auto_save_service);
 		}
 
 		@$mol_mem
