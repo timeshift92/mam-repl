@@ -1,10 +1,10 @@
 namespace $.$$ {
 
 	export class $my_repl_interactive extends $.$my_repl_interactive {
-		// host = 'http://46.173.215.130'
-		host = 'http://localhost:9080'
-		// ws = 'ws://46.173.215.130/ws'
-		ws = 'ws://localhost:9001/'
+		host = 'http://46.173.215.130:9080'
+		// host = 'http://localhost:9080'
+		ws = 'ws://46.173.215.130:9001'
+		// ws = 'ws://localhost:9001/'
 		socket = new WebSocket(this.ws)
 
 		@$mol_mem
@@ -51,7 +51,6 @@ namespace $.$$ {
 			return super.render();
 		}
 		ctrl_s_press(event: KeyboardEvent) {
-			console.log(event)
 			if (event.ctrlKey || event.metaKey) {
 				switch (String.fromCharCode(event.which).toLowerCase()) {
 					case 's':
@@ -72,9 +71,7 @@ namespace $.$$ {
 			} else {
 				this.stop_auto_save()
 			}
-
-
-			return (val !== void 0) ? val : true
+			return (val !== void 0) ? val : false
 		}
 
 		auto_save_service: any

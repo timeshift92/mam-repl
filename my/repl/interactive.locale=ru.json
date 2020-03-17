@@ -1,0 +1,10 @@
+{
+	"$my_repl_interactive_tree_source_hint": "view.tree source",
+	"$my_repl_interactive_tsLabel": ".ts",
+	"$my_repl_interactive_ts_source_hint": "view.ts source",
+	"$my_repl_interactive_cssLabel": ".css",
+	"$my_repl_interactive_css_source_hint": "view.css source",
+	"$my_repl_interactive_app_widgets_title": "$ mol компоненты",
+	"$my_repl_interactive_abs_button_submit_label": "Выполнить",
+	"$my_repl_interactive_abs_button_c1Label": "Автосохранение"
+}

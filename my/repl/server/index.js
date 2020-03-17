@@ -8,13 +8,11 @@ const path = require('path');
 let socket;
 wss.on('connection', function connection(ws) {
 	ws.on('message', function incoming(message) {
-		console.log(message)
 		const parsed = JSON.parse(message);
 		fs.writeFileSync(require('path').join(require.main.filename, '../../', './page/page.view.tree'), parsed.tree, 'utf-8')
 		fs.writeFileSync(require('path').join(require.main.filename, '../../', './page/page.view.ts'), parsed.ts, 'utf-8')
 		fs.writeFileSync(require('path').join(require.main.filename, '../../', './page/page.view.css'), parsed.css, 'utf-8')
 		fs.writeFileSync(require('path').join(require.main.filename, '../../', './page/-/test.html'), getTemplate(new Date().getTime()), 'utf-8', (err) => {
-			console.log(err)
 		})
 
 		ws.send(message);
