@@ -1,24 +1,23 @@
 namespace $.$$ {
 
 	export class $my_repl_interactive extends $.$my_repl_interactive {
-		host = 'http://46.173.215.130:9080'
-		// host = 'http://localhost:9080'
-		ws = 'ws://46.173.215.130:9001'
-		// ws = 'ws://localhost:9001/'
+		// host = 'http://46.173.215.130:9080'
+		host = 'http://localhost:9080'
+		// ws = 'ws://46.173.215.130:9001'
+		ws = 'ws://localhost:9001/'
 		socket = new WebSocket(this.ws)
 
 		@$mol_mem
 		connection() {
-
 			var self = this;
 			this.socket.onclose = function () {
 				setTimeout(() => self.socket = new WebSocket(self.ws), 5000)
 			}
 			this.socket.onmessage = (event: any) => {
 				// this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
-				setTimeout(() => {
-					this.url(`${this.host}/my/repl/page/?${new Date().getTime()}`)
-				}, 250);
+				// setTimeout(() => {
+				// 	this.url(`${this.host}/my/repl/page/-/test.html?${new Date().getTime()}`)
+				// }, 250);
 			}
 
 			this.sending_source.tree = this.$.$mol_state_arg.dict()['tree_source'];
@@ -48,6 +47,7 @@ namespace $.$$ {
 		}
 		render() {
 			this.connection();
+
 			return super.render();
 		}
 		ctrl_s_press(event: KeyboardEvent) {
@@ -125,8 +125,6 @@ namespace $.$$ {
 			this.sending_source.ts = source;
 			return source || ''
 		}
-
-
 	}
 
 }
