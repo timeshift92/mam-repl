@@ -16,7 +16,7 @@ namespace $.$$ {
 			this.socket.onmessage = (event: any) => {
 				// this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
 				// setTimeout(() => {
-				// 	this.url(`${this.host}/my/repl/page/-/test.html?${new Date().getTime()}`)
+					this.url(`${this.host}/my/repl/page/-/test.html?${new Date().getTime()}`)
 				// }, 250);
 			}
 

@@ -35,7 +35,7 @@ $my_repl_interactive $mol_book
 				<= App_widgets $mol_demo_ext 
 					title <= app_widgets_title @ \$mol components
 					attr *
-						data <= url?val \/my/repl/page/-/test.html
+						data <= url?val \
 $my_repl_interactive_abs_button $mol_view 
 	sub /
 		<= Button $mol_button_major
