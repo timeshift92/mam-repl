@@ -1,0 +1,7 @@
+[my_tutorial_sidebar] {
+	flex: 1 1 300px;
+}
+[my_tutorial_placeholder]{
+	flex: 1000 1 600px;
+	padding: 5px;
+}

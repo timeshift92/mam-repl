@@ -1,14 +1,15 @@
-$my_book_example $mol_demo_large
+$my_tutorial $mol_demo_large
 	title @ \Adaprive layout for various sizes of screen
 	sub /
 		<= View $my_book
+			attr * mol_theme \$mol_theme_dark
 			Placeholder <= Placeholder $my_book_placeholder
 				minimal_width 200
 				sub / 
 					<= Text $mol_scroll sub /
 						<= Section $mol_section
 							head / \Section header
-							Content <= Section_content $mol_filler
+							Content <= Section_content \ вот так вот начинает наш туториал
 			pages /
 				<= Sidebar $mol_view
 					minimal_width 250

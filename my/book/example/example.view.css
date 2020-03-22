@@ -1,21 +1,7 @@
-[my_book_example_placeholder], 
-[my_book_example_main], 
-[my_book_example_addon] {
-	align-items: center;
-	justify-content: center;
-	font-size: 2rem;
-	display: flex;
-	flex: 1 1 auto;
+[my_book_example_sidebar] {
+	flex: 1 1 300px;
 }
-
-[my_book_example_placeholder][mol_view] {
-	background-color: hsla(0, 100%, 50%, .2);
-}
-
-[my_book_example_addon] {
-	background-color: hsla(240, 100%, 50%, .2);
-}
-
-[my_book_example_main] {
-	background-color: hsla(120, 100%, 50%, .2);
+[my_book_example_placeholder]{
+	flex: 1000 1 600px;
+	padding: 5px;
 }

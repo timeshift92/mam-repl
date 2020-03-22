@@ -14,15 +14,19 @@ namespace $.$$ {
 				setTimeout(() => self.socket = new WebSocket(self.ws), 5000)
 			}
 			this.socket.onmessage = (event: any) => {
-				// this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
-				// setTimeout(() => {
+				this.url2(`${this.host}/my/repl/page/?${new Date().getTime()}`)
+				setTimeout(() => {
 					this.url(`${this.host}/my/repl/page/-/test.html?${new Date().getTime()}`)
-				// }, 250);
+				}, 500);
 			}
 
 			this.sending_source.tree = this.$.$mol_state_arg.dict()['tree_source'];
 			this.sending_source.ts = this.$.$mol_state_arg.dict()['ts_source'];
 			this.sending_source.css = this.$.$mol_state_arg.dict()['css_source'];
+
+			if ($my_repl.Root(0).App().Button().Save().checked()) {
+				this.auto_save();
+			}
 			setTimeout(() => {
 				this.send_source();
 			}, 1000);
@@ -71,19 +75,24 @@ namespace $.$$ {
 			} else {
 				this.stop_auto_save()
 			}
-			return (val !== void 0) ? val : false
+			return (val !== void 0) ? val : true
 		}
+
+		button_visibility(is_visible = true) {
+			const button = $my_repl.Root(0).App().Button().Button().dom_node() as HTMLElement;
+			button.style.visibility = is_visible ? "" : "hidden";
+		}	
 
 		auto_save_service: any
 		auto_save() {
+			this.button_visibility(false);
 			this.auto_save_service = setInterval(() => {
 				this.send_source();
 			}, 1000)
-
-
 		}
 
 		stop_auto_save() {
+			this.button_visibility();
 			clearInterval(this.auto_save_service);
 		}
 

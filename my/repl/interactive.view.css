@@ -4,8 +4,12 @@
 }
 [my_repl_interactive_abs_button] {
 	position: absolute;
+
 	right: 0;
 	margin: 0.5rem;
+}
+[my_repl_interactive_abs_button_button] {
+	margin-right: 5px;
 }
 [my_repl_interactive_placeholder] {
 	display: flex;
