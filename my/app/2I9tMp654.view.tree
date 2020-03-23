@@ -1,0 +1,6 @@
+$hyoo_sandbox_page_2I9tMp654 $mol_view
+	sub /
+		<= Name $mol_string
+			hint \Name
+			value?val <=> name?val \asd2
+		<= message \22
