@@ -1,7 +1,38 @@
-[my_tutorial_sidebar] {
+[my_tutorial_main_page] {
 	flex: 1 1 300px;
 }
-[my_tutorial_placeholder]{
+[my_tutorial_corporate_page],
+[my_tutorial_private_page],
+[my_tutorial_private_page],
+[my_tutorial_about_page],
+[my_tutorial_dev_page] {
 	flex: 1000 1 600px;
-	padding: 5px;
+}
+
+[my_tutorial_menu] {
+	padding: 0.5rem;
+}
+
+[my_tutorial_menu] > * {
+	margin: 0;
+	display: block;
+}
+
+[my_tutorial] [mol_text_type="strong"] {
+	font-weight: normal;
+	color: yellow;
+}
+
+[my_tutorial] [mol_text] {
+	box-shadow: none;
+}
+
+[my_tutorial_image] {
+	width: 25%;
+	box-shadow: none;
+	opacity: 0.25;
+}
+
+[my_tutorial_text] {
+	flex: 1 1 50%;
 }

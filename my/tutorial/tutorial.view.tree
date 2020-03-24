@@ -1,17 +1,43 @@
-$my_tutorial $mol_demo_large
-	title @ \Adaprive layout for various sizes of screen
-	sub /
-		<= View $my_book
-			attr * mol_theme \$mol_theme_dark
-			Placeholder <= Placeholder $my_book_placeholder
-				minimal_width 200
-				sub / 
-					<= Text $mol_scroll sub /
-						<= Section $mol_section
-							head / \Section header
-							Content <= Section_content \ вот так вот начинает наш туториал
-			pages /
-				<= Sidebar $mol_view
-					minimal_width 250
-					sub / \ Addon
-				
+$my_tutorial $mol_book
+	attr *
+		mol_theme \$mol_theme_dark
+	Placeholder $mol_book_placeholder 
+		sub / 
+			<= widget $mol_demo_ext 
+				title <= app_widgets_title @ \$mol components
+				attr *
+					data <= url?val \
+	pages /
+		<= Main_page $mol_page
+			title \HyOO - приложения для бизнеса
+			minimal_width 400
+			body /
+				<= Menu $mol_list rows /
+					<= tutorial_1 $mol_link
+						arg *
+							! \
+							business \hello world
+							link \https://sandbox.hyoo.ru/hyoo/sandbox/-/test.html#tree_source=%24hyoo_sandbox_page%20%24mol_view%0A%09sub%20%2F%0A%09%09%40%20%5Chello%20world
+						title <= about_title @ \hello world
+					<= Corporate_link $mol_link
+						arg *
+							! \
+							business \corporate
+						title <= corporate_title @ \Corporative clients
+					<= Private_link $mol_link
+						arg *
+							! \
+							business \private
+						title <= private_title @ \Private business
+					<= Dev_link $mol_link
+						arg *
+							! \
+							business \dev
+						title <= dev_title @ \Developers
+			foot / 
+				<= Github_link $mol_link_iconed
+					uri \https://github.com/eigenmethod/mol			
+		
+	Details_close $mol_link
+		arg * business null
+		sub / <= Details_close_icon $mol_icon_cross
